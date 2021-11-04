@@ -3,7 +3,8 @@ import gzip
 import argparse
 from deduper import deduplicate_run, adjust_run_ranking
 
-parser = argparse.ArgumentParser(description='Convert CAsT Passage Run Files to Document Run Files')
+parser = argparse.ArgumentParser(
+    description='Convert CAsT Passage Run Files to Document Run Files')
 parser.add_argument('--run_file_path', type=str, help="Path to run file")
 
 args = parser.parse_args()
@@ -26,4 +27,5 @@ adjusted_run = adjust_run_ranking(deduplicated_run)
 with open(f"{file_basename}-converted.run", "w") as cf:
 
     for row in adjusted_run:
-      cf.write(f'{row["turn_id"]} {row["dummy_value"]} {row["doc_id"]} {row["rank"]} {row["score"]} {row["run_name"]}\n')
+        cf.write(
+            f'{row["turn_id"]} {row["dummy_value"]} {row["doc_id"]} {row["rank"]} {row["score"]} {row["run_name"]}\n')
